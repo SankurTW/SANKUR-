@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sankur Kundu - AI/ML Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+TC:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: #e2e8f0;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .section-title {
+            color: #06b6d4;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
+            border-bottom: 2px solid #06b6d4;
+            width: 20%;
+            padding-bottom: 6px dud;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ec4899;
+            transition: width 0.5s ease;
+        }
+        .section-title:hover::after {
+            width: 100%;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease;
+            backdrop-filter: blur(8px);
+            opacity: 0;
+        }
+        .card.visible {
+            opacity: 1;
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(6, 182, 212, 0.2);
+        }
+        .link-neon {
+            color: #06b6d4;
+            text-shadow: 0 0 5px rgba(6, 182, 212, 0.4);
+            transition: all 0.3s ease;
+        }
+        .link-neon:hover {
+            color: #ec4899;
+            text-shadow: 0 0 10px rgba(236, 72, 153, 0.6);
+        }
+        .animate-slide-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 0.6s ease forwards;
+        }
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .header-glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(6, 182, 212, 0.4), 0 0 20px rgba(6, 182, 212, 0.2);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(6, 182, 212, 0.6), 0 0 30px rgba(6, 182, 212, 0.4);
+            }
+        }
+        .navbar {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .taipei-accent {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 200px;
+            background: linear-gradient(45deg, transparent, rgba(6, 182, 212, 0.2));
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
+            opacity: 0.3;
+        }
+        .typing-text::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 w-full z-10 py-4">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <h1 class="text-xl font-bold font-['Orbitron'] text-white">Sankur Kundu</h1>
+            <div class="space-x-6">
+                <a href="#about" class="link-neon text-sm">About</a>
+                <a href="#education" class="link-neon text-sm">Education</a>
+                <a href="#expertise" class="link-neon text-sm">Expertise</a>
+                <a href="#skills" class="link-neon text-sm">Skills</a>
+                <a href="#experience" class="link-neon text-sm">Experience</a>
+                <a href="#projects" class="link-neon text-sm">Projects</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto pt-24 px-6 relative">
+        <!-- Taipei 101-inspired accent -->
+        <div class="taipei-accent"></div>
+
+        <!-- Header -->
+        <header id="about" class="text-center mb-12 animate-slide-in">
+            <h1 id="typing-header" class="text-5xl font-bold font-['Orbitron'] text-white header-glow typing-text"></h1>
+            <p class="text-gray-300 mt-3 text-lg">AI/ML Student | Bhubaneswar, India</p>
+            <p class="text-gray-400 mt-1">sankur.kundu.tw@gmail.com | +91 9776194201</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="https://linkedin.com/in/sankur-kundu" class="link-neon">LinkedIn</a>
+                <a href="https://github.com/SankurTW" class="link-neon">GitHub</a>
+                
+            </div>
+        </header>
+
+        <!-- Professional Summary -->
+        <section class="mb-12 animate-slide-in" style="animation-delay: 0.1s;">
+            <h2 class="text-2xl font-semibold section-title mb-5">Professional Summary</h2>
+            <p class="text-gray-300 text-base leading-relaxed">
+                I am a third-year Computer Science student specializing in Artificial Intelligence and Machine Learning, with experience in deep learning, natural language processing, and computer vision. I have built machine learning systems that achieved up to 94.8% accuracy using TensorFlow and PyTorch. I am skilled in deploying scalable solutions on AWS and GCP, and have hands-on experience with Docker, Kubernetes, and Terraform. I am passionate about applying my knowledge to real-world problems and eager to contribute to innovative AI projects as part of a collaborative team.
+            </p>
+        </section>
+
+        <!-- Education -->
+        <section id="education" class="mb-12 animate-slide-in" style="animation-delay: 0.2s;">
+            <h2 class="text-2xl font-semibold section-title mb-5">Education</h2>
+            <div class="card p-6">
+                <p class="font-semibold text-lg text-white">B.Tech Computer Science (AI & ML)</p>
+                <p class="text-gray-400">Institute of Engineering & Management, Kolkata | 2022 - 2026</p>
+                <p class="text-gray-400 italic">Relevant Coursework: Machine Learning, Deep Learning, Computer Vision, Natural Language Processing, Signal Processing, Data Structures, Algorithms</p>
+            </div>
+        </section>
+
+        <!-- Core Expertise -->
+        <section id="expertise" class="mb-12 animate-slide-in" style="animation-delay: 0.3s;">
+            <h2 class="text-2xl font-semibold section-title mb-5">Core Expertise</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card p-6">
+                    <p class="font-semibold text-lg text-white">Deep Learning & NLP</p>
+                    <p class="text-gray-300 text-base">Expert in building and fine-tuning transformer models (e.g., BERT, PyTorch transformers) for NLP tasks, achieving up to 94.8% accuracy in data leak detection and intent recognition.</p>
+                </div>
+                <div class="card p-6">
+                    <p class="font-semibold text-lg text-white">Computer Vision</p>
+                    <p class="text-gray-300 text-base">Proficient in developing vision models (e.g., YOLOv8, CNNs) for object detection and signal processing, with 91.7% accuracy in modulation classification.</p>
+                </div>
+                <div class="card p-6">
+                    <p class="font-semibold text-lg text-white">Cloud & MLOps</p>
+                    <p class="text-gray-300 text-base">Skilled in deploying scalable ML pipelines on AWS and GCP, using Docker, Kubernetes, and Terraform to reduce costs by up to 65% and latency by 35%.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section id="skills" class="mb-12 animate-slide-in" style="animation-delay: 0.4s;">
+            <h2 class="text-2xl font-semibold section-title mb-5">Technical Skills</h2>
+            <div class="card p-6">
+                <p><span class="font-semibold text-[#06b6d4]">AI/ML Frameworks:</span> TensorFlow, PyTorch, Hugging Face, ONNX, Scikit-learn, Transfer Learning, NLP, Computer Vision, GANs, Reinforcement Learning</p>
+                <p><span class="font-semibold text-[#06b6d4]">Cloud & DevOps:</span> AWS (SageMaker, Lambda, S3, EKS, ECS), GCP (Vertex AI, BigQuery, Cloud Run), Docker, Kubernetes, Terraform, MLflow, Triton Server</p>
+                <p><span class="font-semibold text-[#06b6d4]">Programming & Data:</span> Python, C++, JavaScript, CUDA, Django, Flask, REST/GraphQL APIs, MongoDB, PostgreSQL, Redis, Kafka, Pandas, NumPy</p>
+                <p><span class="font-semibold text-[#06b6d4]">Tools & Platforms:</span> Git, Linux, Jupyter, VS Code, CI/CD Pipelines, Prometheus, Grafana</p>
+            </div>
+        </section>
+
+        <!-- Experience -->
+      
+
+        <!-- Key Projects -->
+        <section id="projects" class="mb-12 animate-slide-in" style="animation-delay: 0.6s;">
+            <h2 class="text-2xl font-semibold section-title mb-5">Key Projects</h2>
+            <div class="space-y-6">
+                <div class="card p-6">
+                    <p class="font-semibold text-lg text-white">AI-Driven Data Leak Detection System</p>
+                    <p class="text-gray-400 text-sm italic">Mar - June 2025</p>
+                    <p class="text-gray-300 text-sm"><a href="https://github.com/SankurTW/Detek" class="link-neon">github.com/SankurTW/Detek</a></p>
+                    <ul class="list-disc list-inside text-base text-gray-300">
+                        <li>Developed BERT-based NLP framework achieving 94.8% accuracy, processing 20K events/sec on AWS SageMaker</li>
+                        <li>Reduced false positives by 73% using ensemble models and optimized deployment costs by 65% with Terraform</li>
+                        <li>Integrated real-time monitoring with Prometheus and Grafana for system performance tracking</li>
+                    </ul>
+                </div>
+                <div class="card p-6">
+                    <p class="font-semibold text-lg text-white">Software-Defined Radio (SDR) Suite</p>
+                    <p class="text-gray-400 text-sm italic">Jan - March 2025</p>
+                    <p class="text-gray-300 text-sm"><a href="https://github.com/SankurTW/Software-Defined-Radio-SDR-Application-Suite" class="link-neon">github.com/SankurTW/Software-Defined-Radio-SDR-Application-Suite</a></p>
+                    <ul class="list-disc list-inside text-base text-gray-300">
+                        <li>Built TensorFlow classifier with 91.7% accuracy for 27 modulation types, surpassing benchmarks by 27%</li>
+                        <li>Led a team of 3 engineers, reducing integration time by 78% and enhancing signal detection by 42%</li>
+                        <li>Utilized CUDA for accelerated signal processing, improving throughput by 30%</li>
+                    </ul>
+                </div>
+                <div class="card p-6">
+                    <p class="font-semibold text-lg text-white">IoT Predictive Maintenance Platform</p>
+                    <p class="text-gray-400 text-sm italic">Oct - Dec 2024</p>
+                    <p class="text-gray-300 text-sm"><a href="https://github.com/SankurTW/Predictive-Maintenance-for-IoT-GCP-Deployed-Real-Time-Optimized" class="link-neon">github.com/SankurTW/Predictive-Maintenance-for-IoT-GCP-Deployed-Real-Time-Optimized</a></p>
+                    <ul class="list-disc list-inside text-base text-gray-300">
+                        <li>Created TensorFlow LSTM model with 93% accuracy for 50K daily sensor events on GCP Vertex AI</li>
+                        <li>Integrated BigQuery for analytics, improving system reliability by 25% and reducing training time by 60%</li>
+                        <li>Deployed with Docker and Kubernetes for scalability, supporting 10K concurrent requests</li>
+                    </ul>
+                </div>
+                <div class="card p-6">
+                    <p class="font-semibold text-lg text-white">AI-Powered Academic Chatbot</p>
+                    <p class="text-gray-400 text-sm italic">Aug - Sep 2024</p>
+                    <p class="text-gray-300 text-sm"><a href="https://github.com/SankurTW/AI-Powered-Academic-Chatbot" class="link-neon">github.com/SankurTW/AI-Powered-Academic-Chatbot</a></p>
+                    <ul class="list-disc list-inside text-base text-gray-300">
+                        <li>Developed PyTorch transformer with 90% intent recognition, reducing inference latency by 30% for 10K daily queries</li>
+                        <li>Deployed on AWS Lambda with 99.9% uptime, improving intent accuracy by 25% via model refinement</li>
+                        <li>Integrated GraphQL API for efficient data retrieval, enhancing user experience</li>
+                    </ul>
+                </div>
+                <div class="card p-6">
+                    <p class="font-semibold text-lg text-white">Scalable ML Model Serving Platform</p>
+                    <p class="text-gray-400 text-sm italic">Jun - Jul 2024</p>
+                    <p class="text-gray-300 text-sm"><a href="https://github.com/SankurTW/ML-Model-Serving-Platform" class="link-neon">github.com/SankurTW/ML-Model-Serving-Platform</a></p>
+                    <ul class="list-disc list-inside text-base text-gray-300">
+                        <li>Built microservices using Triton Server, achieving 92% accuracy with 50ms latency for 10K requests</li>
+                        <li>Deployed on Kubernetes, supporting 5K concurrent users and reducing inference costs by 40%</li>
+                        <li>Implemented CI/CD pipeline with GitHub Actions for automated model updates</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications & Additional Information -->
+        <section class="mb-12 animate-slide-in" style="animation-delay: 0.7s;">
+            <h2 class="text-2xl font-semibold section-title mb-5">Certifications & Additional Information</h2>
+            <div class="card p-6">
+                <p><span class="font-semibold text-[#06b6d4]">Certifications:</span> Google Cloud Professional (Data Engineer, Database Engineer, Network Engineer), AWS Solutions Architect Associate, CompTIA Security+, TensorFlow Developer Certificate</p>
+                <p><span class="font-semibold text-[#06b6d4]">Languages:</span> English (Fluent), Hindi/Bengali (Native), Mandarin Chinese (Intermediate)</p>
+                <p><span class="font-semibold text-[#06b6d4]">Soft Skills:</span> Leadership & Team Coordination, Technical Communication, Problem-Solving, Cross-functional Collaboration, Agile Methodologies</p>
+                <p><span class="font-semibold text-[#06b6d4]">Career Objective:</span> Aspiring to drive innovation in AI/ML within Taiwan's dynamic tech ecosystem. Committed to delivering scalable, high-impact solutions and growing as a leader in collaborative, forward-thinking teams.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-400 text-sm mt-12 pb-8">
+            <p>© 2025 Sankur Kundu.</p>
+            <p class="mt-2"></p>
+        </footer>
+    </div>
+
+    <script>
+        // Typing effect for header
+        const headerText = "Sankur Kundu";
+        let i = 0;
+        const typingHeader = document.getElementById('typing-header');
+        function typeHeader() {
+            if (i < headerText.length) {
+                typingHeader.textContent += headerText.charAt(i);
+                i++;
+                setTimeout(typeHeader, 100);
+            } else {
+                typingHeader.classList.remove('typing-text');
+            }
+        }
+        window.onload = typeHeader;
+
+        // Smooth scroll for navbar links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on scroll with fade-in for cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-in');
+                    if (entry.target.classList.contains('card')) {
+                        setTimeout(() => entry.target.classList.add('visible'), 100);
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section, .card').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Particle background
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const numParticles = 50;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.01;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(6, 182, 212, 0.6)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < numParticles; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
